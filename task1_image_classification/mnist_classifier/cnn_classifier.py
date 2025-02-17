@@ -50,6 +50,12 @@ class CNNClassifier(mnist_classifier_interface.MnistClassifierInterface):
                 correct += (output == labels).sum().item()
         return correct / total
     
+    def save_weights(self, path="./model.pth"):
+        torch.save(self.model.state_dict(), path)
+
+    def load_weights(self, path="./model.pth"):
+        self.model.load_state_dict(torch.load(path))
+    
     def predict(self, input):
         self.model.eval()
         with torch.no_grad():

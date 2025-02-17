@@ -48,6 +48,12 @@ class NeuralNetworkClassifier(mnist_classifier_interface.MnistClassifierInterfac
                 total += labels.size(0)
                 correct += (output == labels).sum().item()
         return correct / total
+    
+    def save_weights(self, path="./model.pth"):
+        torch.save(self.model.state_dict(), path)
+    
+    def load_weights(self, path="./model.pth"):
+        self.model.load_state_dict(torch.load(path))
 
     def predict(self, input):
         self.model.eval()

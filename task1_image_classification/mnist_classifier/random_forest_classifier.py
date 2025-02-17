@@ -13,13 +13,21 @@ class RandomForestClassifierModel(MnistClassifierInterface):
             y.append(labels.numpy())
         return np.vstack(X), np.concatenate(y)
 
-    def train(self, train_loader, test_loader):
+    def train(self, train_loader, test_loader, **kwargs):
         print(f"Training started")
         X_train, y_train = self._extract_data(train_loader)
         X_test, y_test = self._extract_data(test_loader)
         self.model.fit(X_train, y_train)
         print(f"Training finished")
         return self.model.score(X_test, y_test)
+    
+    def save_weights(self, path="./model.pkl"):
+        import joblib
+        joblib.dump(self.model, path)
+    
+    def load_weights(self, path="./model.pkl"):
+        import joblib
+        self.model = joblib.load(path)
 
     def predict(self, input):
         X = input.view(input.shape[0], -1).numpy()

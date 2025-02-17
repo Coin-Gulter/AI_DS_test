@@ -19,3 +19,9 @@ class MnistClassifier():
 
     def predict(self, input):
         return self.model.predict(input)
+    
+    def save_weights(self, path):
+        self.model.save_weights(path)  
+
+    def load_weights(self, path):
+        self.model.load_weights(path)
