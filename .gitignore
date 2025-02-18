@@ -3,6 +3,15 @@
 .idea
 __pycache__
 data
+dataset
+checkpoint-88
 *.pth
 *.pkl
 *.png
+*.json
+*.txt
+*.zip
+*.csv
+*.log
+*.safetensors
+
